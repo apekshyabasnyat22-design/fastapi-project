@@ -2,8 +2,8 @@ from fastapi import FastAPI, Depends
 from typing import Optional
 from databases import engine, Base, get_db
 from sqlalchemy.orm import Session
-from schemas import ProductCreate
-from databases import ProductModel
+from  schemas import ProductCreate
+from models import ProductModel
 
 app = FastAPI()
 
@@ -31,7 +31,7 @@ async def read_products(
 
 @app.post("/products")
 def create_product(
-   a product: ProductCreate,
+    product: ProductCreate,
     db: Session = Depends(get_db)
 ):
     new_product = ProductModel(
@@ -46,6 +46,8 @@ def create_product(
     db.refresh(new_product)  # get generated ID
 
     return new_product
+
+
 
 @app.get("/orders/")
 async def read_orders(
@@ -60,8 +62,9 @@ async def read_orders(
 print("Routes using Dependency Injection and SQLite added.")
 
 @app.post("/orders")
-def create_product(
-   a product: ProductCreate,
+def create_product
+(
+    product: ProductCreate,
     db: Session = Depends(get_db)
 ):
     new_product = ProductModel(
@@ -75,4 +78,6 @@ def create_product(
     db.commit()              # save to DB
     db.refresh(new_product)  # get generated ID
 
-    return new_product
+    return new_product  
+
+        
